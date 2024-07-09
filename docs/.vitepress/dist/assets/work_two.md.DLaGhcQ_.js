@@ -1,1 +1,0 @@
-import{_ as t,c as e,o}from"./chunks/framework.DOwwFb84.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"work/two.md","filePath":"work/two.md"}'),r={name:"work/two.md"};function a(s,c,n,p,_,d){return o(),e("div")}const f=t(r,[["render",a]]);export{m as __pageData,f as default};
