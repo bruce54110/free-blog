@@ -1,8 +1,18 @@
-import { defineConfig } from 'vitepress'
-
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+import { defineConfig } from 'vitepress'
+import { withMermaid } from "vitepress-plugin-mermaid";
+
+export default withMermaid({
+  mermaid: {
+    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
+  },
+  // optionally set additional config for plugin itself with MermaidPluginConfig
+  mermaidPlugin: {
+    class: "mermaid my-class", // set additional css classes for parent container 
+  },
   base: '/free-blog/',
+  markdown: {
+  },
   title: "My blog",
   description: "这是一个记录个人工作生活的博客",
   themeConfig: {
@@ -18,15 +28,12 @@ export default defineConfig({
         {
           text: '工作',
           items: [
-            { text: '测试1', link: '/work/one' },
             { text: 'spring',
               link: '/work/spring/',
               items:[
-                { text: 'spring源码', link: '/work/spring/spring-source-code' },
+                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-source-code' },
               ] 
-            },
-            { text: '测试2', link: '/work/two' },
-            { text: 'Introduction from Examples', link: '/guide/' }
+            }
           ]
         }
       ],
@@ -34,9 +41,7 @@ export default defineConfig({
         {
           text: '生活',
           items: [
-            { text: 'Markdown Examples', link: '/markdown-examples' },
-            { text: 'Runtime API Examples', link: '/api-examples' },
-            { text: 'Introduction from Examples', link: '/guide/' }
+            { text: '点滴生活', link: '/life/my-life' }
           ]
         }
       ]
@@ -66,3 +71,7 @@ export default defineConfig({
     ]
   }
 })
+
+
+
+
