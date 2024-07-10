@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.BBCWOUBu.js";const p=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"life/my-life.md","filePath":"life/my-life.md"}'),r={name:"life/my-life.md"};function i(o,s,c,f,n,l){return a(),t("div")}const _=e(r,[["render",i]]);export{p as __pageData,_ as default};
