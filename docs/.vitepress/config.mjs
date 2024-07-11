@@ -31,7 +31,7 @@ export default withMermaid({
             { text: 'spring',
               link: '/work/spring/',
               items:[
-                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-source-code' },
+                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' },
               ] 
             }
           ]

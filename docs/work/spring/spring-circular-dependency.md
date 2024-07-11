@@ -1,15 +1,3 @@
----
-title: Spring Bean 循环依赖详解
-date: 2024-01-31 20:56:05
-tags:
-  - Java
-  - Spring
-categories: 
-  - Java
-toc: true
-thumbnail: /images/spring-circular-dependency/spring-bean-cycle.png
----
-
 # 什么是循环依赖？
 
 循环依赖就是循环引用，就是两个或多个bean相互之间的持有对方。比如CircleA引用CircleB，CircleB引用CircleC，CircleC引用CircleA。
@@ -33,7 +21,9 @@ Spring容器循环依赖包括如下两种：
 
 原型模式下的依赖检查，只有单例模式下才会尝试解决循环依赖，原型模式下直接抛出异常`BeanCurrentlyInCreationException`异常。
 
-```
+**代码片段1**
+
+```java
 AbstractBeanFactory抽象类：
 
 // Fail if we're already creating this bean instance:
@@ -56,53 +46,65 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 以a，b 两个bean互相依赖为例，假设Spring容器先加载 a 后加载 b，时序图如下：
 
 ```mermaid
-sequenceDiagram
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java:getBean("a")
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java:getSingleton("a", true)
-    DefaultSingletonBeanRegistry.java ->> DefaultSingletonBeanRegistry.java:this.singletonFactories.get("a")为空
-    DefaultSingletonBeanRegistry.java-->>AbstractBeanFactory.java: 返回 sharedInstance "a" 为空（缓存里没有）
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java: getSingleton("a", ObjectFactory<?> singletonFactory)
-    DefaultSingletonBeanRegistry.java -->> DefaultSingletonBeanRegistry.java: singletonFactory.getObject()
-    DefaultSingletonBeanRegistry.java->>AbstractAutowireCapableBeanFactory: createBean("a", mbd, args)
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory: doCreateBean("a", mbdToUse, args)
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:createBeanInstance("a", mbd, args) 实例化
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:addSingletonFactory("a", singletonFactory) 添加三级缓存工厂方法
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:populateBean，寻找注入所依赖的"b"
-    AbstractAutowireCapableBeanFactory-->> AbstractBeanFactory.java: getBean("b")
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java:getSingleton("b", true)
-    DefaultSingletonBeanRegistry.java-->>AbstractBeanFactory.java: 返回 sharedInstance "b" 为空（缓存里没有）
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java: getSingleton("b", ObjectFactory<?> singletonFactory)
-    DefaultSingletonBeanRegistry.java -->> DefaultSingletonBeanRegistry.java: singletonFactory.getObject()
-    DefaultSingletonBeanRegistry.java->>AbstractAutowireCapableBeanFactory: createBean("b", mbd, args)
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory: doCreateBean("b", mbdToUse, args)
-    AbstractAutowireCapableBeanFactory-->> AbstractAutowireCapableBeanFactory:createBeanInstance("b", mbd, args) 实例化
-    AbstractAutowireCapableBeanFactory-->> AbstractAutowireCapableBeanFactory:addSingletonFactory("b", singletonFactory) 添加三级缓存工厂方法
-    AbstractAutowireCapableBeanFactory-->> AbstractAutowireCapableBeanFactory:populateBean，寻找注入所依赖的"a"
-    AbstractAutowireCapableBeanFactory -->> AbstractBeanFactory.java: getBean("a")
-    AbstractBeanFactory.java->> DefaultSingletonBeanRegistry.java:getBean("a")
-    AbstractBeanFactory.java->>DefaultSingletonBeanRegistry.java:getSingleton("a", true)
-        DefaultSingletonBeanRegistry.java -->>DefaultSingletonBeanRegistry.java:this.singletonFactories.get("a")（三级缓存有a值）
-    DefaultSingletonBeanRegistry.java -->> DefaultSingletonBeanRegistry.java:singletonFactory.getObject()
-    DefaultSingletonBeanRegistry.java->> AbstractAutowireCapableBeanFactory: getEarlyBeanReference 获取早期的Bean "a"
-    AbstractAutowireCapableBeanFactory -->> AbstractAutowireCapableBeanFactory: 若有AOP，会提前处理AOP相关逻辑
-    AbstractAutowireCapableBeanFactory -->> DefaultSingletonBeanRegistry.java: exposedObject
-    DefaultSingletonBeanRegistry.java -->>DefaultSingletonBeanRegistry.java: 把 Bean "a" 放到二级缓存，移除三级缓存
-    DefaultSingletonBeanRegistry.java -->> AbstractBeanFactory.java:返回提早暴露的Bean "a"
-    AbstractBeanFactory.java ->> AbstractAutowireCapableBeanFactory: 返回Bean "a",将"a"注入到 "b"当中(b终于找到a了)
-    AbstractAutowireCapableBeanFactory -->> AbstractAutowireCapableBeanFactory:initializeBean("b", exposedObject, mbd)，有AOP的话，会在这里处理
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:Object earlySingletonReference = getSingleton("b", false) 为null，因为二级缓存中为空
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:exposedObject != earlySingletonReference 返回 b
-    AbstractAutowireCapableBeanFactory -->> DefaultSingletonBeanRegistry.java:返回
-    DefaultSingletonBeanRegistry.java -->> DefaultSingletonBeanRegistry.java:addSingleton("b", singletonObject)，放到一级缓存中
-    DefaultSingletonBeanRegistry.java -->> AbstractBeanFactory.java: 返回b (getSingleton("b", ObjectFactory<?> singletonFactory))
-    AbstractBeanFactory.java ->> AbstractAutowireCapableBeanFactory: a终于找到了依赖的b
-    AbstractAutowireCapableBeanFactory -->> AbstractAutowireCapableBeanFactory:initializeBean("a", exposedObject, mbd)，有AOP的话会在此处理
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:Object earlySingletonReference = getSingleton("a", false)，这里返回 a 不是null，因为二级缓存里有a
-    AbstractAutowireCapableBeanFactory-->>AbstractAutowireCapableBeanFactory:exposedObject = earlySingletonReference 返回 a
-    AbstractAutowireCapableBeanFactory -->> AbstractBeanFactory.java:返回a 
+sequenceDiagram;
+    # 起别名
+    participant A as AbstractBeanFactory.java
+    participant D as DefaultSingletonBeanRegistry.java
+    participant AF as AbstractAutowireCapableBeanFactory.java
+    # 开始画时序图
+    A->>D:getBean("a")
+    Note over A,D: 首次获取Bean a
+    D->>D:getSingleton("a", true)
+    Note over D,D:在一级缓存中查找Bean a 为空
+    D ->> D:this.singletonFactories.get("a")为空
+    Note over D,D:在二级和三级缓存中查找Bean a 为空
+    D-->>A: 返回 sharedInstance "a" 为空（缓存里没有）
+    A->>D: getSingleton("a", ObjectFactory<?> singletonFactory)
+    D -->> D: singletonFactory.getObject()
+    Note over D,D: 调用的是 createBean(beanName, mbd, args)方法
+    D->>AF: createBean("a", mbd, args)
+    AF-->>AF: doCreateBean("a", mbdToUse, args)
+    AF-->>AF:createBeanInstance("a", mbd, args) 实例化
+    AF-->>AF:addSingletonFactory("a", singletonFactory) 添加三级缓存工厂方法
+    Note over AF: 放置三级缓存 key 是 beanName,value是ObjectFactory 实现是getEarlyBeanReference(beanName, mbd, bean))
+    AF-->>AF:populateBean，寻找注入所依赖的"b"
+    AF-->> A: getBean("b")
+    A->>D:getSingleton("b", true)
+    D-->>A: 返回 sharedInstance "b" 为空（缓存里没有）
+    A->>D: getSingleton("b", ObjectFactory<?> singletonFactory)
+    D -->> D: singletonFactory.getObject()
+    D->>AF: createBean("b", mbd, args)
+    AF-->>AF: doCreateBean("b", mbdToUse, args)
+    AF-->> AF:createBeanInstance("b", mbd, args) 实例化
+    AF-->> AF:addSingletonFactory("b", singletonFactory) 添加三级缓存工厂方法
+    AF-->> AF:populateBean，寻找注入所依赖的"a"
+    AF -->> A: getBean("a")
+    A->> D:getBean("a"A->> D:getBean("a"tA->> D:getBean("a"A->> D:getBean("a"t)
+    A->>D:getSingleton("a", true)
+        D -->>D:this.singletonFactories.get("a")（三级缓存有a值）
+    D -->> D:singletonFactory.getObject()
+    D->> AF: getEarlyBeanReference 获取早期的Bean "a"
+    AF -->> AF: 若有AOP，会提前处理AOP相关逻辑
+    AF -->> D: exposedObject
+    D -->>D: 把 Bean "a" 放到二级缓存，移除三级缓存
+    D -->> A:返回提早暴露的Bean "a"
+    A ->> AF: 返回Bean "a",将"a"注入到 "b"当中(b终于找到a了)
+    AF -->> AF:initializeBean("b", exposedObject, mbd)，有AOP的话，会在这里处理
+    AF-->>AF:Object earlySingletonReference = getSingleton("b", false) 为null，因为二级缓存中为空
+    AF-->>AF:exposedObject != earlySingletonReference 返回 b
+    AF -->> D:返回
+    D -->> D:addSingleton("b", singletonObject)，放到一级缓存中
+    D -->> A: 返回b (getSingleton("b", ObjectFactory<?> singletonFactory))
+    A ->> AF: a终于找到了依赖的b
+    AF -->> AF:initializeBean("a", exposedObject, mbd)，有AOP的话会在此处理
+    AF-->>AF:Object earlySingletonReference = getSingleton("a", false)，这里返回 a 不是null，因为二级缓存里有a
+    AF-->>AF:exposedObject = earlySingletonReference 返回 a
+    AF -->> A:返回a 
 ```
 
 从上面的时序图可以看出主要的流程，涉及到 AbstractBeanFactory、DefaultSingletonBeanRegistry、AbstractAutowireCapableBeanFactory 三个类。
+
+**代码片段2**
 
 ```java
 org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.java
@@ -140,6 +142,8 @@ bean加载时，从一开始的 调用 `getSingleton()` 方法从单例缓存中
 
 **这个方法中涉及到三个缓存：** 
 
+**代码片段3**
+
 ```java
 	/** Cache of singleton objects: bean name --> bean instance */
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<String, Object>(64);
@@ -171,6 +175,8 @@ getSingleton()方法整个过程如下：
 
 一直往下跟代码我们会发现`doCreateBean()` 方法
 
+**代码片段4**
+
 ```java
 sharedInstance = getSingleton(beanName, new ObjectFactory<Object>() {
 						@Override
@@ -190,6 +196,8 @@ sharedInstance = getSingleton(beanName, new ObjectFactory<Object>() {
 ```
 
  **AbstractAutowireCapableBeanFactory  中：**
+
+**代码片段5**
 
 ```java
 /**
@@ -238,6 +246,8 @@ sharedInstance = getSingleton(beanName, new ObjectFactory<Object>() {
 
 doCreateBean()：
 
+**代码块6**
+
 ```java
 // Eagerly cache singletons to be able to resolve circular references
 		// even when triggered by lifecycle interfaces like BeanFactoryAware.
@@ -257,7 +267,7 @@ doCreateBean()：
 		}
 ```
 
-****我们可以看到 `earlySingletonExposure`是**true**的时候，才会调用`addSingletonFactory()`**将bean对象加入到三级缓存**当中。****
+**我们可以看到 `earlySingletonExposure`是true的时候，才会调用`addSingletonFactory()`** **将bean对象加入到三级缓存当中。**
 
 ``earlySingletonExposure`` 为true 的前提是：
 
@@ -266,6 +276,8 @@ doCreateBean()：
 - 当前bean正在创建当中
 
 **addSingletonFactory() 代码如下:**
+
+**代码片段7**
 
 ```java
 	protected void addSingletonFactory(String beanName, ObjectFactory<?> singletonFactory) {
@@ -280,11 +292,13 @@ doCreateBean()：
 	}	
 ```
 
-将bean添加到三级缓存，从二级缓存中删掉
+【操作三级缓存】将bean添加到三级缓存，从二级缓存中删掉
 
 那么一级缓存是在哪里添加的呢？
 
 前边我们看到的 `doCreateBean()` 方法其实来自匿名内部类 `new ObjectFactory<Object>() {}` 重写的`getObject()`  方法
+
+**代码片段8**
 
 ```java
 // Create bean instance.
@@ -312,6 +326,8 @@ doCreateBean()：
 
 **addSingleton(beanName, singletonObject) 方法如下：**
 
+**代码片段9**
+
 ```java
 	/**
 	 * Add the given singleton object to the singleton cache of this factory.
@@ -329,17 +345,19 @@ doCreateBean()：
 	}
 ```
 
-添加到一级缓存，从二级缓存中删掉，从三级缓存中删掉，将已经创建成功的bean添加`registeredSingletons`
+【操作三级缓存】添加到一级缓存，从二级缓存中删掉，从三级缓存中删掉，将已经创建成功的bean添加`registeredSingletons `集合中。
 
-集合中。
+# 总结
 
-**总结**
+至此，Spring 关于 singleton bean 循环依赖已经分析完毕了。所以我们基本上可以确定 Spring 解决循环依赖的方案了。
 
-​      至此，Spring 关于 singleton bean 循环依赖已经分析完毕了。所以我们基本上可以确定 Spring 解决循环依赖的方案了：Spring 在创建 bean 的时候并不是等它完全完成，而是在创建过程中将创建中的 bean 的 ObjectFactory 提前曝光（即加入到 singletonFactories 缓存中，代码在上文的**"addSingletonFactory() 代码"**），这样一旦下一个 bean 创建的时候需要依赖 bean ，则直接使用 ObjectFactory 的 `getObject()` 获取了，也就是 `getSingleton()` 中的代码片段了。
+## 如何避免循环依赖导致的一直寻找对方的问题？
 
-​		以A，B两个Bean互相依赖为例，在获取A Bean的时候，发现三级缓存中都是空的，则走后续实例化Bean的逻辑，将自己的ObjectFactory放到三级缓存当中，再接着进行加载自己依赖的其他属性，这时候去加载B Bean，同样的流程，B Bean也将自己的ObjectFactory放入到三级缓存中，再接着加载自己依赖的A Bean。这时候从三级缓存中获取到 A Bean ，同时将获取到的Bean放到二级缓存中。继续走后面的初始化逻辑。这时B就加载到了早期的A Bean。A Bean 继续走后续逻辑就成了一个完整的Bean。
+Spring 在创建 bean 的时候并不是等它完全完成，而是在创建过程中将创建中的 bean 的 ObjectFactory 提前曝光，也就是通过加入到 singletonFactories 缓存中的`ObjectFactory`来实现，代码在上文的`addSingletonFactory()` 代码（代码片段7），这样一旦下一个 bean 创建的时候需要依赖 bean ，则直接使用 ObjectFactory 的 `getObject()` 获取了，也就是调用了 `getSingleton()` 中的代码片段了（代码片段8）。
 
-​	 	到这里，关于 Spring 解决 bean 循环依赖就已经分析完毕了。最后来描述下就上面那个循环依赖 Spring 解决的过程：首先 A 完成初始化第一步并将自己提前曝光出来（通过 ObjectFactory 将自己提前曝光），在初始化的时候，发现自己依赖对象 B，此时就会去尝试 get(B)，这个时候发现 B 还没有被创建出来，然后 B 就走创建流程，在 B 初始化的时候，同样发现自己依赖 C，C 也没有被创建出来，这个时候 C 又开始初始化进程，但是在初始化的过程中发现自己依赖 A，于是尝试 get(A)，这个时候由于 A 已经添加至缓存中（一般都是添加至三级缓存 singletonFactories ），通过 ObjectFactory 提前曝光，所以可以通过 `ObjectFactory.getObject()` 拿到 A 对象，C 拿到 A 对象后顺利完成初始化，然后将自己添加到一级缓存中，回到 B ，B 也可以拿到 C 对象，完成初始化，A 可以顺利拿到 B 完成初始化。到这里整个链路就已经完成了初始化过程了。 
+以A，B两个Bean互相依赖为例，在获取A Bean的时候，发现三级缓存中都是空的，则走后续实例化Bean的逻辑，将自己的ObjectFactory放到三级缓存当中，再接着进行加载自己依赖的其他属性，这时候去加载B Bean，同样的流程，B Bean也将自己的ObjectFactory放入到三级缓存中，再接着加载自己依赖的A Bean。这时候从三级缓存中获取到 A Bean ，同时将获取到的Bean放到二级缓存中。继续走后面的初始化逻辑。这时B就加载到了早期的A Bean。A Bean 继续走后续逻辑就成了一个完整的Bean。
+
+最后来描述一下Spring循环依赖解决的过程：首先 A 完成初始化第一步并将自己提前曝光出来（通过 ObjectFactory 将自己提前曝光），在初始化的时候，发现自己依赖对象 B，此时就会去尝试 get(B)，这个时候发现 B 还没有被创建出来，然后 B 就走创建流程，在 B 初始化的时候，同样发现自己依赖 C，C 也没有被创建出来，这个时候 C 又开始初始化进程，但是在初始化的过程中发现自己依赖 A，于是尝试 get(A)，这个时候由于 A 已经添加至缓存中（一般都是添加至三级缓存 singletonFactories ），通过 ObjectFactory 提前曝光，所以可以通过 `ObjectFactory.getObject()` 拿到 A 对象，C 拿到 A 对象后顺利完成初始化，然后将自己添加到一级缓存中，回到 B ，B 也可以拿到 C 对象，完成初始化，A 可以顺利拿到 B 完成初始化。到这里整个链路就已经完成了初始化过程了。 
 
 参考
 
