@@ -31,7 +31,12 @@ export default withMermaid({
             { text: 'spring',
               link: '/work/spring/',
               items:[
-                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' },
+                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' }
+              ] 
+            },
+            { text: '数据结构与算法',
+              link: '/work/algorithms/',
+              items:[
               ] 
             }
           ]
