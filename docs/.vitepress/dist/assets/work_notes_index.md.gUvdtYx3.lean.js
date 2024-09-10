@@ -1,0 +1,1 @@
+import{_ as e,c as t,o}from"./chunks/framework.BBCWOUBu.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"work/notes/index.md","filePath":"work/notes/index.md"}'),n={name:"work/notes/index.md"};function r(a,s,c,d,i,p){return o(),t("div")}const f=e(n,[["render",r]]);export{m as __pageData,f as default};
