@@ -79,7 +79,7 @@ sequenceDiagram;
     AF-->> AF:addSingletonFactory("b", singletonFactory) 添加三级缓存工厂方法
     AF-->> AF:populateBean，寻找注入所依赖的"a"
     AF -->> A: getBean("a")
-    A->> D:getBean("a"A->> D:getBean("a"tA->> D:getBean("a"A->> D:getBean("a"t)
+    A->> D:getBean("a")
     A->>D:getSingleton("a", true)
         D -->>D:this.singletonFactories.get("a")（三级缓存有a值）
     D -->> D:singletonFactory.getObject()
