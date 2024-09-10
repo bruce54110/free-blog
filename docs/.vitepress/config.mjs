@@ -20,7 +20,8 @@ export default withMermaid({
     nav: [
       { text: '主页', link: '/' },
       { text: '工作', link: '/work/' },
-      { text: '生活', link: '/life/' }
+      { text: '生活', link: '/life/' },
+      { text: '读书笔记', link: '/book/' }
     ],
 
     sidebar: {
@@ -47,6 +48,14 @@ export default withMermaid({
           text: '生活',
           items: [
             { text: '点滴生活', link: '/life/my-life' }
+          ]
+        }
+      ],
+      '/book/':[
+        {
+          text: '读书笔记',
+          items: [
+            { text: '微服务设计', link: '/book/microservices-design/' },
           ]
         }
       ]
