@@ -80,7 +80,7 @@ sequenceDiagram;
     AF-->> AF:populateBean，寻找注入所依赖的"a"
     AF -->> A: getBean("a")
     A->> D:getBean("a")
-    A->>D:getSingleton("a", true)
+    D->>D:getSingleton("a", true)
         D -->>D:this.singletonFactories.get("a")（三级缓存有a值）
     D -->> D:singletonFactory.getObject()
     D->> AF: getEarlyBeanReference 获取早期的Bean "a"
