@@ -10,7 +10,7 @@ C-->A
 ```
 
 
-# Spring如何解决循环依赖？
+# Spring中的循环依赖
 
 Spring容器循环依赖包括如下两种：
 
@@ -39,7 +39,13 @@ if (isPrototypeCurrentlyInCreation(beanName)) {
 
 **原型模式下，循环依赖无法解决**
 
-# Spring 循环依赖场景分析
+# Spring 是如何解决循环依赖的？
+
+Spring是通过三级缓存解决循环依赖的，Spring利用三级缓存中的objectFactory生成并返回一个early早期对象，供其他依赖该对象的Bean依赖注入使用，以此解决循环依赖问题。
+
+
+
+# Spring 解决循环依赖源码分析
 
 不管是单例 Bean还是prototype Bean，注入Bean的逻辑起点都是在`AbstractBeanFactory.java`中的 `getBean`方法。
 
@@ -60,33 +66,34 @@ sequenceDiagram;
     Note over D,D:在二级和三级缓存中查找Bean a 为空
     D-->>A: 返回 sharedInstance "a" 为空（缓存里没有）
     A->>D: getSingleton("a", ObjectFactory<?> singletonFactory)
-    D -->> D: singletonFactory.getObject()
+    D ->> D: singletonFactory.getObject()
     Note over D,D: 调用的是 createBean(beanName, mbd, args)方法
     D->>AF: createBean("a", mbd, args)
     AF-->>AF: doCreateBean("a", mbdToUse, args)
     AF-->>AF:createBeanInstance("a", mbd, args) 实例化
     AF-->>AF:addSingletonFactory("a", singletonFactory) 添加三级缓存工厂方法
     Note over AF: 放置三级缓存 key 是 beanName,value是ObjectFactory 实现是getEarlyBeanReference(beanName, mbd, bean))
-    AF-->>AF:populateBean，寻找注入所依赖的"b"
+    AF -->> AF:populateBean，寻找注入所依赖的"b"
     AF-->> A: getBean("b")
     A->>D:getSingleton("b", true)
     D-->>A: 返回 sharedInstance "b" 为空（缓存里没有）
     A->>D: getSingleton("b", ObjectFactory<?> singletonFactory)
-    D -->> D: singletonFactory.getObject()
+    D ->> D: singletonFactory.getObject()
     D->>AF: createBean("b", mbd, args)
     AF-->>AF: doCreateBean("b", mbdToUse, args)
     AF-->> AF:createBeanInstance("b", mbd, args) 实例化
     AF-->> AF:addSingletonFactory("b", singletonFactory) 添加三级缓存工厂方法
     AF-->> AF:populateBean，寻找注入所依赖的"a"
     AF -->> A: getBean("a")
-    A->> D:getBean("a")
-    D->>D:getSingleton("a", true)
-        D -->>D:this.singletonFactories.get("a")（三级缓存有a值）
-    D -->> D:singletonFactory.getObject()
+    A ->> D:getBean("a")
+    D ->> D:getSingleton("a", true)(这里标记1，对应后续的1')
+    D ->> D:this.singletonFactories.get("a")（三级缓存有a值）
+    Note over D,D: 这里从三级缓存中取值，就是要调用singletonFactory.getObject()方法，对应前面放置三级缓存 key 是 beanName,value是ObjectFactory 实现是getEarlyBeanReference(beanName, mbd, bean))
+    D ->> D:singletonFactory.getObject()
     D->> AF: getEarlyBeanReference 获取早期的Bean "a"
     AF -->> AF: 若有AOP，会提前处理AOP相关逻辑
     AF -->> D: exposedObject
-    D -->>D: 把 Bean "a" 放到二级缓存，移除三级缓存
+    D ->>D: 把 Bean "a" 放到二级缓存，移除三级缓存(这里标记1'对应前边的1)
     D -->> A:返回提早暴露的Bean "a"
     A ->> AF: 返回Bean "a",将"a"注入到 "b"当中(b终于找到a了)
     AF -->> AF:initializeBean("b", exposedObject, mbd)，有AOP的话，会在这里处理
