@@ -39,6 +39,12 @@ export default withMermaid({
               link: '/work/algorithms/',
               items:[
               ] 
+            },
+            { text: 'AI',
+              link: '/work/ai/',
+              items:[
+                { text: '大模型RAG应用与LangChain4初探', link: '/work/ai/lang-chain-rag' }
+              ] 
             }
           ]
         }
