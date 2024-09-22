@@ -29,7 +29,7 @@ export default withMermaid({
         {
           text: '工作',
           items: [
-            { text: 'spring',
+            /**{ text: 'spring',
               link: '/work/spring/',
               items:[
                 { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' }
@@ -40,10 +40,18 @@ export default withMermaid({
               items:[
               ] 
             },
+            */
             { text: 'AI',
               link: '/work/ai/',
               items:[
                 { text: '大模型RAG应用与LangChain4初探', link: '/work/ai/lang-chain-rag' }
+              ] 
+            },
+            { text: 'Java',
+              link: '/work/java/',
+              items:[
+                { text: 'Java线程池知识点梳理', link: '/work/java/java-thread-pool' },
+                { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' }
               ] 
             }
           ]
@@ -95,7 +103,14 @@ export default withMermaid({
       {
         async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-M0BGESLHGT'
       }
-    ]
+    ],
+    ['script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-M0BGESLHGT');`
+    ],
   ],
 })
 
