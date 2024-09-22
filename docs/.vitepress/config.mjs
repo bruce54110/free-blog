@@ -89,7 +89,14 @@ export default withMermaid({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     ]
-  }
+  },
+  head: [
+    ['script',
+      {
+        async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-M0BGESLHGT'
+      }
+    ]
+  ],
 })
 
 
