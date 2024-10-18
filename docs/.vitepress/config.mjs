@@ -53,6 +53,13 @@ export default withMermaid({
                 { text: 'Java线程池知识点梳理', link: '/work/java/java-thread-pool' },
                 { text: 'Spring Bean循环依赖探究', link: '/work/spring/spring-circular-dependency' }
               ] 
+            },
+            { text: '其他',
+              link: '/work/other/',
+              items:[
+                { text: '本机运行Nacos容器每次都要重新创建容器，该怎么办？',
+                  link: '/work/other/docker-nacos-hosname' },
+              ] 
             }
           ]
         }

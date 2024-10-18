@@ -165,3 +165,9 @@ Executors 返回的线程池对象的弊端如下：
 创建线程池使用线程工厂指定形成名称，方便出错时排查。
 
 线程资源必须由线程池提供，不允许自行在程序中显示创建线程。
+
+# 参考
+
+1. https://mp.weixin.qq.com/s/IVgGXQKU1QiT1ToN2wXHJg
+2. https://mp.weixin.qq.com/s/icrrxEsbABBvEU0Gym7D5Q
+3. https://tech.meituan.com/2020/04/02/java-pooling-pratice-in-meituan.html
