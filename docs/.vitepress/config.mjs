@@ -20,7 +20,8 @@ export default withMermaid({
     nav: [
       { text: '主页', link: '/' },
       { text: '工作', link: '/work/' },
-      { text: '生活', link: '/life/' },
+      { text: 'Rust', link: '/rust/'},
+      //{ text: '生活', link: '/life/' },
       { text: '读书笔记', link: '/book/' }
     ],
 
@@ -79,7 +80,20 @@ export default withMermaid({
             { text: '微服务设计', link: '/book/microservices-design/' },
           ]
         }
-      ]
+      ],
+      '/rust/':[
+        {
+          text: 'Rust',
+          items: [
+            { text: '错误处理',
+              link: '/rust/error/',
+              items:[
+                { text: 'panic', link: '/rust/error/panic' }
+              ] 
+            }
+          ]
+        }
+      ],
     },
 
     /**

@@ -1,0 +1,1 @@
+import{_ as r,c as t,o as e}from"./chunks/framework.BBCWOUBu.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"rust/rust-error1.md","filePath":"rust/rust-error1.md"}'),s={name:"rust/rust-error1.md"};function o(a,c,n,p,u,_){return e(),t("div")}const m=r(s,[["render",o]]);export{i as __pageData,m as default};
