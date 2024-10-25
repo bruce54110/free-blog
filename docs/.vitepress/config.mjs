@@ -88,7 +88,8 @@ export default withMermaid({
             { text: '错误处理',
               link: '/rust/error/',
               items:[
-                { text: '什么是panic？', link: '/rust/error/panic' }
+                { text: '什么是panic？', link: '/rust/error/panic' },
+                { text: '使用Result枚举处理错误', link: '/rust/error/rust-Result' }
               ] 
             },
             { text: '所有权机制',
