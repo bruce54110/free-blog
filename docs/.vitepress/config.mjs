@@ -10,7 +10,6 @@ export default withMermaid({
   mermaidPlugin: {
     class: "mermaid my-class", // set additional css classes for parent container 
   },
-  lastUpdated: true,
   base: '/free-blog/',
   markdown: {
   },
