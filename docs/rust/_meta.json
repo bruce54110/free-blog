@@ -1,0 +1,13 @@
+[
+  "index",
+  {
+    "name": "error",
+    "label": "Rust 错误处理",
+    "type": "dir"
+  },
+  {
+    "name": "ownership",
+    "label": "Rust所有权机制",
+    "type": "dir"
+  }
+]

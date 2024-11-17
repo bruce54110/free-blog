@@ -1,16 +1,17 @@
 {
+  "name": "free-blog",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
-  },
-  "devDependencies": {
-    "markdown-it-mathjax3": "^4.3.2",
-    "mermaid": "^10.9.1",
-    "vitepress-plugin-mermaid": "^2.0.16"
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
   },
   "dependencies": {
-    "@lunariajs/core": "^0.1.1",
-    "markdown-mermaid-exporter": "^1.0.2"
+    "rspress": "^1.35.3",
+    "rspress-plugin-mermaid": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17"
   }
 }

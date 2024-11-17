@@ -1,0 +1,23 @@
+[
+  "index",
+  {
+    "name": "java",
+    "label": "Java",
+    "type": "dir"
+  },
+  {
+    "name": "spring",
+    "label": "Spring",
+    "type": "dir"
+  },
+  {
+    "name": "ai",
+    "label": "AI",
+    "type": "dir"
+  },
+  {
+    "name": "other",
+    "label": "其他",
+    "type": "dir"
+  }
+]

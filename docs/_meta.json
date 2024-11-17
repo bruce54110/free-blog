@@ -1,0 +1,42 @@
+[
+  {
+    "text": "主页",
+    "link": "/"
+  },
+  {
+    "text": "工作",
+    "link": "/work/",
+    "activeMatch": "/work/",
+    "items": [
+      {
+        "text": "Java",
+        "link": "/work/java/",
+        "activeMatch": "/work/java/"
+      },
+      {
+        "text": "Spring",
+        "link": "/work/spring/",
+        "activeMatch": "/work/spring/"
+      },
+      {
+        "text": "AI",
+        "link": "/work/ai/",
+        "activeMatch": "/work/ai/"
+      },
+      {
+        "text": "其他",
+        "link": "/work/other/",
+        "activeMatch": "/work/other/"
+      }
+    ]
+  },{
+    "text": "Rust",
+    "link": "/rust/",
+    "activeMatch": "/rust/"
+  },
+  {
+    "text": "读书笔记",
+    "link": "/book/",
+    "activeMatch": "/book/"
+  }
+]
