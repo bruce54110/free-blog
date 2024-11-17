@@ -14,6 +14,7 @@ hero:
       link: https://github.com/web-infra-dev/rspress
   image:
     src: /free-blog-logo.png
+    
     alt: Logo
 features:
   - title: Blazing fast build speed
