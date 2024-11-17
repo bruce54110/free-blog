@@ -43,7 +43,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
-        run: pnpm install && npm i rspress-plugin-mermaid && pnpm add rspress-plugin-mermaid 
+        run: npm install && npm i rspress-plugin-mermaid && npm add rspress-plugin-mermaid 
       - name: Build with Rspress
         run: |
           pnpm run build
