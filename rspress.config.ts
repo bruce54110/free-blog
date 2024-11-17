@@ -8,10 +8,10 @@ export default defineConfig({
   plugins: [mermaid()],
   base: '/free-blog/',
   title: 'My Blog',
-  icon: '/free-blog-logo.png',
+  icon: '/free-blog/free-blog-logo.png',
   logo: {
-     light: '/free-blog-logo.png',
-     dark: '/free-blog-logo.png',
+     light: '/free-blog/free-blog-logo.png',
+     dark: '/free-blog/free-blog-logo.png',
   },
   themeConfig: {
     socialLinks: [
