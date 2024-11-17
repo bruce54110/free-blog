@@ -3,6 +3,8 @@ import { defineConfig } from 'rspress/config';
 
 import mermaid from 'rspress-plugin-mermaid';
 import ga from 'rspress-plugin-google-analytics';
+import readingTime from 'rspress-plugin-reading-time';
+
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
@@ -11,6 +13,7 @@ export default defineConfig({
     ga({
       id: 'G-M0BGESLHGT',
     }),
+    readingTime(),
   ],
   base: '/free-blog/',
   title: 'My Blog',
