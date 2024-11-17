@@ -2,10 +2,16 @@ import * as path from 'node:path';
 import { defineConfig } from 'rspress/config';
 
 import mermaid from 'rspress-plugin-mermaid';
+import ga from 'rspress-plugin-google-analytics';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  plugins: [mermaid()],
+  plugins: [
+    mermaid(),
+    ga({
+      id: 'G-M0BGESLHGT',
+    }),
+  ],
   base: '/free-blog/',
   title: 'My Blog',
   icon: '/free-blog/free-blog-logo.png',

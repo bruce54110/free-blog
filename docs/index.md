@@ -2,9 +2,9 @@
 pageType: home
 
 hero:
-  name: My Blog
+  name: Free Blog
   text: Free Blog website
-  tagline: This is the tagline
+  tagline: This is My Blog website about code and life.
   actions:
     - theme: brand
       text: Quick Start
@@ -17,7 +17,7 @@ hero:
 
     alt: Logo
 features:
-  - title: Blazing fast build speed
+  - title: Rust
     details: The core compilation module is based on the Rust front-end toolchain, providing a more ultimate development experience.
     icon: 🏃🏻‍♀️
   - title: Support for MDX content writing

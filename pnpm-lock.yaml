@@ -11,6 +11,9 @@ importers:
       rspress:
         specifier: ^1.35.3
         version: 1.37.0(webpack@5.96.1)
+      rspress-plugin-google-analytics:
+        specifier: ^0.3.0
+        version: 0.3.0(rspress@1.37.0(webpack@5.96.1))
       rspress-plugin-mermaid:
         specifier: ^0.3.0
         version: 0.3.0(rspress@1.37.0(webpack@5.96.1))
@@ -1723,6 +1726,11 @@ packages:
 
   rspress-plugin-devkit@0.3.0:
     resolution: {integrity: sha512-5CyqIIleboW32rmhK7V7e9WQY+J3V2HtOv9OgRCYJbGrOt/8RUdgRT+vJz5z/aUvcT5VX0OTTzUtGokUelJH6g==}
+    peerDependencies:
+      rspress: '*'
+
+  rspress-plugin-google-analytics@0.3.0:
+    resolution: {integrity: sha512-WefsXU8eTHGFC54Zr6/rmZVuK89w3kgY+sP7uUPdFZZghbkFJUM1Xjd2UqzyFL1coq67RDxeZ68L29nPKF3ReA==}
     peerDependencies:
       rspress: '*'
 
@@ -4542,6 +4550,14 @@ snapshots:
       util-ts-types: 1.0.0
       vfile: 5.3.7
       vfile-reporter: 7.0.5
+    transitivePeerDependencies:
+      - supports-color
+
+  rspress-plugin-google-analytics@0.3.0(rspress@1.37.0(webpack@5.96.1)):
+    dependencies:
+      '@rspress/shared': 1.37.0
+      rspress: 1.37.0(webpack@5.96.1)
+      rspress-plugin-devkit: 0.3.0(rspress@1.37.0(webpack@5.96.1))
     transitivePeerDependencies:
       - supports-color
 
