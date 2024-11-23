@@ -9,5 +9,10 @@
     "name": "ownership",
     "label": "Rust所有权机制",
     "type": "dir"
+  },
+  {
+    "name": "lifetime",
+    "label": "Rust生命周期",
+    "type": "dir"
   }
 ]
