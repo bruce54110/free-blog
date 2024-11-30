@@ -14,5 +14,10 @@
     "name": "lifetime",
     "label": "Rust生命周期",
     "type": "dir"
+  },
+  {
+    "name": "oop",
+    "label": "Rust面相对象特性",
+    "type": "dir"
   }
 ]
