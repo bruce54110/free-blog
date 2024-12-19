@@ -38,5 +38,10 @@
     "text": "读书笔记",
     "link": "/book/",
     "activeMatch": "/book/"
+  },
+  {
+    "text": "文章收藏",
+    "link": "/collection-article/",
+    "activeMatch": "/collection-article/"
   }
 ]
