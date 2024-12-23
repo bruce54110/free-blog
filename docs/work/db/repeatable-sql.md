@@ -207,3 +207,5 @@ delete from example_table where name = 'tom';
 ## 总结
 
 至此，SQL脚本中常见的7类SQL写法如何改写为可重复执行的SQL，就整理完成了。可重复执行的SQL脚本不仅在执行时提供了便利，也为项目迁移，项目本地化部署带来了便利。
+## 参考
+1. [mysql性能优化-预处理语句（Prepared Statements）](https://blog.csdn.net/Flying_Fish_roe/article/details/142042127)
