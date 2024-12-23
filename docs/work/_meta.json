@@ -11,6 +11,11 @@
     "type": "dir"
   },
   {
+    "name": "db",
+    "label": "数据库",
+    "type": "dir"
+  },
+  {
     "name": "ai",
     "label": "AI",
     "type": "dir"

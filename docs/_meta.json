@@ -19,6 +19,11 @@
         "activeMatch": "/work/spring/"
       },
       {
+        "text": "数据库",
+        "link": "/work/db/",
+        "activeMatch": "/work/db/"
+      },
+      {
         "text": "AI",
         "link": "/work/ai/",
         "activeMatch": "/work/ai/"
