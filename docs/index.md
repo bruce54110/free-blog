@@ -17,10 +17,10 @@ hero:
 
     alt: Logo
 features:
-  - title: Rust
-    details: Rust is a programming language that is designed to be efficient, safe, and concurrent.
+  - title: 最新文章
+    details: 聊聊Java的SPI机制
     icon: 🗃
-    link: /rust/
+    link: /work/java/java-spi
   - title: Java
     details: Java is a programming language that is designed to be platform-independent, object-oriented, and secure.
     icon: 📦
