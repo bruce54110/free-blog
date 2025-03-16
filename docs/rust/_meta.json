@@ -19,5 +19,10 @@
     "name": "oop",
     "label": "Rust面相对象特性",
     "type": "dir"
+  },
+  {
+    "name": "case",
+    "label": "Rust学习案例",
+    "type": "dir"
   }
 ]

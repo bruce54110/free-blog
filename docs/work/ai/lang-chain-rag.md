@@ -34,7 +34,7 @@ Naive 是区别于 Advanced，指没有使用 Advanced RAG中的技术。
 
 高级 RAG，使用多种技术，力求LLM可以更准确的回答。
 
-![c8d7fc395eed63d53172ce9eb6eba8f5](/Users/zhw/myDevelop/free-blog/docs/work/themes/images/lang-chain-rag/c8d7fc395eed63d53172ce9eb6eba8f5.png)
+![c8d7fc395eed63d53172ce9eb6eba8f5](../themes/images/lang-chain-rag/c8d7fc395eed63d53172ce9eb6eba8f5.png)
 
 ### Query Transformations
 
