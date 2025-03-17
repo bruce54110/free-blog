@@ -18,9 +18,9 @@ hero:
     alt: Logo
 features:
   - title: 最新文章
-    details: 聊聊Java的SPI机制
+    details: Rust学习之实现命令行小工具minigrep（一）
     icon: 🗃
-    link: /work/java/java-spi
+    link: /rust/case/rust-minigrep
   - title: Java
     details: Java is a programming language that is designed to be platform-independent, object-oriented, and secure.
     icon: 📦
