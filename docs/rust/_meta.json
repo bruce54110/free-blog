@@ -21,6 +21,11 @@
     "type": "dir"
   },
   {
+    "name": "closures",
+    "label": "Rust 闭包",
+    "type": "dir"
+  },
+  {
     "name": "case",
     "label": "Rust学习案例",
     "type": "dir"
