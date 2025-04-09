@@ -26,6 +26,11 @@
     "type": "dir"
   },
   {
+    "name": "iterators",
+    "label": "Rust 迭代器（Iterators）",
+    "type": "dir"
+  }
+  {
     "name": "case",
     "label": "Rust学习案例",
     "type": "dir"
