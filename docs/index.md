@@ -18,9 +18,9 @@ hero:
     alt: Logo
 features:
   - title: 最新文章
-    details: Rust学习之实现命令行小工具minigrep（一）
+    details: Rust学习之实现命令行小工具minigrep（二）
     icon: 🗃
-    link: /rust/case/rust-minigrep
+    link: /rust/case/rust-minigrep1
   - title: Java
     details: Java is a programming language that is designed to be platform-independent, object-oriented, and secure.
     icon: 📦
