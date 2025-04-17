@@ -1,0 +1,66 @@
+.cardContainer {
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  gap: 20px; /* 卡片之间的间距 */
+  padding: 20px; /* 容器内边距 */
+}
+
+.articleCard {
+  border: 1px solid #ddd; /* 保留卡片边框 */
+  border-radius: 8px; /* 保留卡片圆角 */
+  padding: 15px;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* 添加 border-color 的过渡 */
+  width: 300px; /* 设置卡片的宽度，您可以根据需要调整 */
+  display: flex;
+  flex-direction: column;
+  text-decoration: none; /* 去除链接下划线 */
+  color: inherit; /* 继承父级颜色 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* 添加一个轻微的初始阴影 */
+  cursor: pointer; /* 添加鼠标悬停时的光标样式 */
+  border-color: #ddd; /* 初始边框颜色 */
+}
+
+.articleCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 加强悬停时的阴影 */
+  border-color: #aaa; /* 悬停时边框颜色可以稍微加深 */
+}
+
+.linkCardImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* 使图片圆角与卡片一致 (或者您可以设置为 0 去除) */
+  margin-bottom: 10px;
+  object-fit: cover; /* 保证图片比例 */
+  max-height: 180px; /* 设置图片最大高度，您可以根据需要调整 */
+  border: none; /* 去除图片边框 */
+}
+
+.linkCardTitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.linkCardDescription {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+  flex-grow: 1; /* 让描述内容尽可能占据剩余空间 */
+  line-height: 1.5; /* 稍微增加摘要的行高 */
+}
+
+.articleCardDark {
+  background-color: #292e37; /* 深色背景 */
+  border-color: #333; /* 深色边框 */
+  color: #eee; /* 浅色文字 */
+}
+
+.linkCardTitleDark {
+  color: #fff; /* 更亮的标题文字 */
+}
+
+.linkCardDescriptionDark {
+  color: #ccc; /* 稍浅的摘要文字 */
+}

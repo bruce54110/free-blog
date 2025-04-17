@@ -8,6 +8,7 @@
     "preview": "rspress preview"
   },
   "dependencies": {
+    "js-yaml": "^4.1.0",
     "rspress": "^1.35.3",
     "rspress-plugin-google-analytics": "^0.3.0",
     "rspress-plugin-mermaid": "^0.3.0",

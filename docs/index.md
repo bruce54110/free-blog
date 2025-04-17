@@ -16,17 +16,17 @@ hero:
     src: /free-blog/free-blog-logo.png
 
     alt: Logo
-features:
-  - title: 最新文章
-    details: Rust学习之实现命令行小工具minigrep（二）
-    icon: 🗃
-    link: /rust/case/rust-minigrep1
-  - title: Java
-    details: Java is a programming language that is designed to be platform-independent, object-oriented, and secure.
-    icon: 📦
-    link: /work/java/
-  - title: AI & LLM
-    details: AI & LLM is a technology that is designed to be intelligent and capable of learning and reasoning.
-    icon: 🎨
-    link: /work/ai/
----
+# features:
+#   - title: 最新文章
+#     details: Rust学习之实现命令行小工具minigrep（二）
+#     icon: 🗃
+#     link: /rust/case/rust-minigrep1
+#   - title: Java
+#     details: Java is a programming language that is designed to be platform-independent, object-oriented, and secure.
+#     icon: 📦
+#     link: /work/java/
+#   - title: AI & LLM
+#     details: AI & LLM is a technology that is designed to be intelligent and capable of learning and reasoning.
+#     icon: 🎨
+#     link: /work/ai/
+# ---

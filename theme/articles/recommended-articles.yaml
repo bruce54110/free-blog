@@ -1,0 +1,13 @@
+articles:
+  - title: "Rust学习之实现命令行小工具minigrep（一）"
+    description: "通过开发一个在指定文件中查询某个特定字符串命的令行小工具进一步学习和巩固Rust基础"
+    image: "" # 替换为您的图片路径 (可以使用 public 目录下的路径)
+    link: "/free-blog/rust/case/rust-minigrep" # 替换为您的文章链接
+  - title: "Rust 入门之闭包（Closures）"
+    description: "Rust 的 闭包（closures）是可以保存在变量中或作为参数传递给其他函数的匿名函数。你可以在一个地方创建闭包，然后在不同的上下文中执行闭包运算。不同于函数，闭包允许捕获其被定义时所在作用域中的值。"
+    image: "" # 替换为您的图片路径
+    link: "/free-blog/rust/closures/rust-closures" # 替换为您的文章链接
+  - title: "Rust入门之迭代器（Iterators）"
+    description: "迭代器（Iterators）是 Rust 中最核心的工具之一，它不仅是遍历集合的抽象，更是 Rust 零成本抽象（Zero-Cost Abstractions）和所有权系统完美结合的典范。"
+    image: "" # 替换为您的图片路径
+    link: "/free-blog/rust/iterators/rust-iterators" # 替换为您的文章链接
