@@ -38,6 +38,7 @@ jobs:
         run: |
           pnpm install
           pnpm add js-yaml
+          npm i giscus
       - name: Build with Rspress
         run: |
           pnpm run build

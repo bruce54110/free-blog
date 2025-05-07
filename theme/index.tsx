@@ -8,7 +8,10 @@ import styles from './style.module.css'; // 导入 CSS 模块
 import yaml from 'js-yaml';
 import recommendedArticlesYaml from './articles/recommended-articles.yaml?raw'; // 导入 YAML 文件内容
 
-function App() {
+import GiscusComment from './giscus'; // 导入 Giscus 组件
+
+
+function MyRecommendedArticle() {
     // 假设您的文章数据如下，您需要替换成您实际的数据
     const [articles, setArticles] = useState<any[]>([]);
     const isDark = useDark(); // 使用 useDark hook 获取当前主题模式
@@ -40,7 +43,11 @@ function App() {
   );
   }
 
-const Layout = () => <Theme.Layout afterFeatures={App()} />;
+const Layout = () => <Theme.Layout
+  afterFeatures={MyRecommendedArticle()}
+  afterDocContent={<div><GiscusComment /></div>}
+
+/>;
 
 export default {
   ...Theme,
