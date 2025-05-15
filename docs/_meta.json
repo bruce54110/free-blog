@@ -34,10 +34,16 @@
         "activeMatch": "/work/other/"
       }
     ]
-  },{
+  },
+  {
     "text": "Rust",
     "link": "/rust/",
     "activeMatch": "/rust/"
+  },
+  {
+    "text": "网络通信",
+    "link": "/network/",
+    "activeMatch": "/network/"
   },
   {
     "text": "读书笔记",

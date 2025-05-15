@@ -12,6 +12,7 @@ cargo new minigrep1
 
 ![image-20250312134607357](../themes/images/rust-minigrep/image-20250312134607357.png)
 
+
 ## 接收命令行参数
 
 我们想要实现的命令效果如下：
