@@ -39,5 +39,10 @@
     "name": "case",
     "label": "Rust学习案例",
     "type": "dir"
+  },
+  {
+    "name": "concurrency",
+    "label": "Rust 并发编程",
+    "type": "dir"
   }
 ]
