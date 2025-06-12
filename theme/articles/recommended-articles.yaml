@@ -7,7 +7,7 @@ articles:
     description: "安全且高效地处理并发编程是 Rust 的另一个主要目标。"
     image: "" # 替换为您的图片路径 (可以使用 public 目录下的路径)
     link: "/free-blog/rust/concurrency/rust-concurrency" # 替换为您的文章链接
-  - title: "Rust入门之智能指针"
+  - title: "Rust入门之并发编程基础（二）"
     description: "智能指针是 Rust 中非常重要的概念，它们不仅是内存管理的工具，更是 Rust 所有权系统的核心组成部分。"
     image: "" # 替换为您的图片路径
-    link: "/free-blog/rust/pointers/rust-smart-pointers" # 替换为您的文章链接
+    link: "/free-blog/rust/concurrency/rust-concurrency2" # 替换为您的文章链接
