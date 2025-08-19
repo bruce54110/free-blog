@@ -44,5 +44,10 @@
     "name": "concurrency",
     "label": "Rust 并发编程",
     "type": "dir"
+  },
+  {
+    "name": "web",
+    "label": "Rust Web 开发",
+    "type": "dir"
   }
 ]
