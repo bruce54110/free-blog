@@ -1,4 +1,4 @@
-# Rust + PostgreSQL：deadpool 和 diesel 踩坑记录（四）
+# Rust + PostgreSQL：deadpool 和 diesel 数据库连接池实战（四）
 
 我使用Rust开发RTMate的想法是实现一个提供Websocket连接服务的平台，免去大家自建Websocket服务。在这当中自然要对不同的租户以及不同租户下的客户端进行管理，对客户端需要认证、连接登记、统计。所以我选择PostgreSQL作为底层数据库。操作数据库需要使用数据库连接，数据库连接的创建对机器性能的消耗较昂贵的，自然要使用连接池来管理数据库连接了。Rust 语言中同步与异步并存，在Rust 当中如何构建一个 PostgreSQL 数据库连接池呢？在项目中使用ORM 框架又如何使用连接池中的数据库连接呢？本文来一探究竟。
 
