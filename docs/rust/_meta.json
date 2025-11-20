@@ -49,5 +49,10 @@
     "name": "web",
     "label": "Rust Web 开发",
     "type": "dir"
+  },
+  {
+    "name": "other",
+    "label": "Rust 相关",
+    "type": "dir"
   }
 ]
