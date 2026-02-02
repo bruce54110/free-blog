@@ -1,4 +1,8 @@
 articles:
+  - title: "我在 RTMate 里使用的高并发连接管理利器： DashMap（五）"
+    description: "DashMap 并发利器"
+    image: "" # 替换为您的图片路径
+    link: "/free-blog/rust/web/rust-websocket-rt3" # 替换为您的文章链接
   - title: "Cloudflare 11.18 故障深度复盘：当“极致优化”撞上“现实边界“"
     description: "Cloudflare 11.18 故障深度复盘：当“极致优化”撞上“现实边界“"
     image: "" # 替换为您的图片路径
@@ -7,7 +11,4 @@ articles:
     description: "Rust + PostgreSQL：deadpool 和 diesel 数据库连接池实战（四）"
     image: "" # 替换为您的图片路径
     link: "/free-blog/rust/web/rust-websocket-rt4" # 替换为您的文章链接
-  - title: "Axum 最佳实践：如何构建优雅的 Rust 错误处理系统？（三）"
-    description: "Rust Axum 构建优雅的 Rust 错误处理"
-    image: "" # 替换为您的图片路径
-    link: "/free-blog/rust/web/rust-websocket-rt3" # 替换为您的文章链接
+
