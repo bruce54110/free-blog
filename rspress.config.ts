@@ -1,5 +1,6 @@
 import * as path from 'node:path';
-import { defineConfig } from 'rspress/config';
+import { defineConfig } from '@rspress/core';
+import { pluginLess } from '@rsbuild/plugin-less';
 
 import mermaid from 'rspress-plugin-mermaid';
 import ga from 'rspress-plugin-google-analytics';
@@ -15,6 +16,9 @@ export default defineConfig({
     }),
     readingTime(),
   ],
+  builderConfig: {
+    plugins: [pluginLess()],
+  },
   base: '/free-blog/',
   title: 'My Blog',
   icon: '/free-blog/free-blog-logo.png',
@@ -30,7 +34,6 @@ export default defineConfig({
         content: 'https://github.com/BruceZhang54110/',
       },
     ],
-    prevPageText: '上一页',
-    nextPageText: '下一页',
+
   },
 });

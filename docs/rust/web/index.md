@@ -6,4 +6,5 @@
 - [深入理解 Rust Axum：两种依赖注入模式的实践与对比（二）](rust-websocket-rt2.md)
 - [Axum 最佳实践：如何构建优雅的 Rust 错误处理系统？（三）](rust-websocket-rt3.md)
 - [Rust + PostgreSQL：deadpool 和 diesel 数据库连接池实战（四）](rust-websocket-rt4.md)
-- [我在 RTMate 里使用的高并发连接管理利器： DashMap（五）](rust-websocket-rt4.md)
+- [我在 RTMate 里使用的高并发连接管理利器： DashMap（五）](rust-websocket-rt5.md)
+- [RTMate （WebSocket as A Service）中的消息的发布订阅机制](rust-websocket-rt6.md)

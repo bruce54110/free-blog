@@ -1,6 +1,6 @@
-import Theme from 'rspress/theme';
+import { Layout as DefaultLayout } from '@rspress/core/theme-original';
 import React, { useState, useEffect } from 'react';
-import { useDark } from 'rspress/runtime';
+import { useDark } from '@rspress/core/runtime';
 
 
 import styles from './style.module.css'; // 导入 CSS 模块
@@ -43,15 +43,11 @@ function MyRecommendedArticle() {
   );
   }
 
-const Layout = () => <Theme.Layout
+const Layout = () => <DefaultLayout
   afterFeatures={MyRecommendedArticle()}
   afterDocContent={<div><GiscusComment /></div>}
 
 />;
 
-export default {
-  ...Theme,
-  Layout,
-};
-
-export * from 'rspress/theme';
+export { Layout };
+export * from '@rspress/core/theme-original';

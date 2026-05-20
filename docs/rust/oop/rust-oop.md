@@ -176,7 +176,7 @@ impl Draw for SelectBox {
 
 执行结果：
 
-```bas
+```bash
 running 1 test
 test tests::test_trait_oop ... ok
 

@@ -35,10 +35,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
-        run: |
-          pnpm install
-          pnpm add js-yaml
-          npm i giscus
+        run: pnpm install
       - name: Build with Rspress
         run: |
           pnpm run build

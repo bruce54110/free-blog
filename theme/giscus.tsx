@@ -1,5 +1,5 @@
 import Giscus from '@giscus/react';
-import { useDark } from 'rspress/runtime';
+import { useDark } from '@rspress/core/runtime';
 
 import styles from './Giscus.module.css';
 

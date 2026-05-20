@@ -6,7 +6,7 @@
 
 除了其他基本依赖歪还需要以下 spring-boot-starter-amq依赖。
 
-```xnl
+```xml
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>

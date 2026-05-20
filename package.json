@@ -1,6 +1,7 @@
 {
   "name": "free-blog",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "rspress dev",
@@ -10,12 +11,13 @@
   "dependencies": {
     "@giscus/react": "^3.1.0",
     "js-yaml": "^4.1.0",
-    "rspress": "^1.35.3",
-    "rspress-plugin-google-analytics": "^0.3.0",
-    "rspress-plugin-mermaid": "^0.3.0",
-    "rspress-plugin-reading-time": "^0.3.0"
+    "rspress-plugin-google-analytics": "^1.0.0",
+    "rspress-plugin-mermaid": "^1.0.1",
+    "rspress-plugin-reading-time": "^1.0.0"
   },
   "devDependencies": {
+    "@rsbuild/plugin-less": "^1.6.3",
+    "@rspress/core": "^2.0.12",
     "@types/node": "^18.11.17"
   }
 }
